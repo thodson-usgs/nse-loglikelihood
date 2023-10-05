@@ -1,0 +1,71 @@
+\documentclass{article} 
+
+\usepackage{amsmath}
+
+\begin{document} % All begin commands must be paired with an end command somewhere
+
+\section{The log-likelihood for the classic Nash-Sutcliffe efficiency} % creates a section
+
+In this section, we show that the log-likelihood for the Nash-Sutcliffe efficiency
+is equivalent to the normal log-likelihood.
+The Nash-Sutcliffe efficiency (NSE) is defined as
+\begin{equation}
+  \text{NSE}(y, \hat{y}) = 1 - \frac{\sum_{i=1}^n (y_i - \hat{y}_i)^2}{\sum_{i=1}^n (y_i - \bar{y})^2} \text{,}
+  \label{eq:app-nse}
+\end{equation}
+where 
+$y$ are the observed data,
+$\hat{y}$ are the predicted data,
+$n$ is the number of observations,
+and $\bar{y}$ is the mean of $y$.
+Note that the paper uses a modified form of the NSE, where $\bar{y}$ is location-dependent.
+Here, we use the classic definition, which is equivalent to the coefficient of determination ($R^2$) (Nash and Sutcliffe, 1970) %\cite{Nash1970}.
+The mean squared error (MSE) is defined as
+\begin{equation}
+  \text{MSE}(y, \hat{y}) = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2
+  \label{eq:app-mse}
+\end{equation}
+The formal log-likelihood for the MSE is the normal log-likelihood
+\begin{equation}
+  \ell_2(y, \hat{y}) = -\frac{n}{2} \log(2 \pi \sigma^2) - \frac{1}{2 \sigma^2} \sum_{i=1}^n (y_i - \hat{y}_i)^2
+  \label{eq:app-l2}
+\end{equation}
+where $\sigma^2$ is the variance of the error term ($y - \hat{y})$.
+
+Substituting the equation for MSE into the NSE gives
+\begin{align}
+  \text{NSE}(y, \hat{y}) = 1 - \text{MSE}(y / \sigma_o, \hat{y} / \sigma_o)
+  \label{eq:app-mse-substitution}
+\end{align}
+where $\sigma_o$ is the standard deviation of $y$.
+The constant term in equation \ref{eq:app-mse-substitution} is independent of the error distribution,
+so we can drop it from the log-likelihood.
+Next, substitute the log-likelihoods ($\ell$) into equation \ref{eq:app-mse-substitution}, 
+using $\ell_2$ for the MSE.
+The log-likelihood is not invariant to transformation,
+so we include the Jacobian term to account for the change of variables.
+The general form of the change of variables for a log-likelihood is
+\begin{equation}
+  \ell' = \ell(v(y)) + \ln | v'(y) |
+\end{equation}
+where $v$ is the transformation function, 
+$v'$ is its derivative,
+and the second term on the right-hand side is the Jacobian term.
+
+In equation \ref{eq:app-mse-substitution},
+the transformation is $v(y) = y / \sigma_o$ and its derivative is $v'(y) = 1 / \sigma_o$;
+therefore, substituting log-likelihoods yields
+\begin{equation}
+  \ell_{\text{NSE}}(y, \hat{y}) = \ell_2(y / \sigma_o, \hat{y} / \sigma_o) + \ln | 1 / \sigma_o | \text{.}
+  \label{eq:app-l2-substitution}
+\end{equation}
+Substituting in equation \ref{eq:app-l2} for $\ell_2$,
+one can verify that the right-hand side is equivalent to $\ell_2(y, \hat{y}$),
+\begin{equation}
+  \ell_2(y, \hat{y}) = \ell_2(y / \sigma_o, \hat{y} / \sigma_o) + \ln | 1 / \sigma_o | \text{.}
+\end{equation}
+In other words, the normal log-likelihood ($\ell_2$) and NSE log-likelihood are equivalent.
+
+%\end{section}
+
+\end{document} % This is the end of the document
