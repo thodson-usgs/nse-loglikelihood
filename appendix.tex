@@ -1,10 +1,10 @@
-\documentclass{article} 
-
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath}
 
-\begin{document} % All begin commands must be paired with an end command somewhere
+\begin{document}
 
-\section{The log-likelihood for the classic Nash-Sutcliffe efficiency} % creates a section
+\section{The Nash-Sutcliffe efficiency log-likelihood} % creates a section
 
 In this section, we show that the log-likelihood for the Nash-Sutcliffe efficiency
 is equivalent to the normal log-likelihood.
@@ -51,21 +51,19 @@ The general form of the change of variables for a log-likelihood is
 where $v$ is the transformation function, 
 $v'$ is its derivative,
 and the second term on the right-hand side is the Jacobian term.
-
 In equation \ref{eq:app-mse-substitution},
 the transformation is $v(y) = y / \sigma_o$ and its derivative is $v'(y) = 1 / \sigma_o$;
 therefore, substituting log-likelihoods yields
 \begin{equation}
-  \ell_{\text{NSE}}(y, \hat{y}) = \ell_2(y / \sigma_o, \hat{y} / \sigma_o) + \ln | 1 / \sigma_o | \text{.}
+  \ell_{\text{NSE}}(y, \hat{y}) = \ell_2(y / \sigma_o, \hat{y} / \sigma_o) + n \ln | 1 / \sigma_o | \text{.}
   \label{eq:app-l2-substitution}
 \end{equation}
-Substituting in equation \ref{eq:app-l2} for $\ell_2$,
+Substituting equation \ref{eq:app-l2} for $\ell_2$,
 one can verify that the right-hand side is equivalent to $\ell_2(y, \hat{y}$),
 \begin{equation}
-  \ell_2(y, \hat{y}) = \ell_2(y / \sigma_o, \hat{y} / \sigma_o) + \ln | 1 / \sigma_o | \text{.}
+  \ell_2(y, \hat{y}) = \ell_2(y / \sigma_o, \hat{y} / \sigma_o) + n \ln | 1 / \sigma_o | \text{.}
 \end{equation}
 In other words, the normal log-likelihood ($\ell_2$) and NSE log-likelihood are equivalent.
 
-%\end{section}
+\end{document}
 
-\end{document} % This is the end of the document
